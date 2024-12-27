@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 
+import Category from './components/Category';
+
 function App() {
-  const [result, setResults] = useState([]);
+  const [results, setResults] = useState([]);
 
   React.useEffect(() => {
     fetch("http://localhost:3001/categories")
@@ -13,14 +15,31 @@ function App() {
     })
   }, [])
 
+  const renderCategories = () => {
+    return results.map (c => 
+      <Category key={c.id} id={c.id} title={c.title} />
+    );
+  }
+
+
   return (
-    <div className="App">
+    <>
+    <header>My Store</header>
+
+    <section>
+      <nav>
       {
-      result.map (d => (
-        <div key={d.id}>{d.tittle}</div>
-      ))
+        results && renderCategories()
       }
-    </div>
+      </nav>
+      <article>
+        main area
+      </article>
+    </section>
+    <footer>
+
+    </footer>
+    </>
   );
 }
 
