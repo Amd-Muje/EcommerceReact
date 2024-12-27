@@ -15,9 +15,13 @@ function App() {
     })
   }, [])
 
+  const handleCategoryClick = id => {
+    alert('id: ' +id);
+  }
+
   const renderCategories = () => {
     return results.map (c => 
-      <Category key={c.id} id={c.id} title={c.title} />
+      <Category key={c.id} id={c.id} title={c.title} onCategoryClick={() => handleCategoryClick(c.id)}/>
     );
   }
 
