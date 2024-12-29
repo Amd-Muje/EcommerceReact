@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './App.css';
 import {getCategories,getProducts} from './fetcher';
 
-import Category from './components/Category';
+import Category from './components/category';
+import Category_Product from './components/category_product';
 
 function App() {
   const [categories, setCategories] = useState({errorMessage: '', data: []});
@@ -34,7 +35,7 @@ function App() {
 
   const renderProducts = () => {
     return products.data.map (p =>
-      <div>{p.title}</div>
+      <Category_Product{...p}>{p.title}</Category_Product>
     );
   }
 
