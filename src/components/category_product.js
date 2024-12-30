@@ -2,15 +2,15 @@ import React from "react";
 
 const Category_Product = ({title, image, specs, features, price, stock}) => {
     return (
-        <article>
-            <div>
+        <article className="flex flex-row mb-4">
+            <div className="bg-cyan-100">
                 {title}
             </div>
-            <div>
+            <div className="bg-red-300">
                 <img src={`./assets/${image}`} alt={title}/>
             </div>
             
-            <aside>
+            <aside className="bg-red-300">
                 <div>
                     <h3>Dimensions</h3>
                     <label>{specs.dimensions}</label>
@@ -33,7 +33,7 @@ const Category_Product = ({title, image, specs, features, price, stock}) => {
                 </div>
             </aside>
 
-            <aside>
+            <aside className="bg-yellow-400">
                 <div>
                     &pound;{price}
                 </div>
