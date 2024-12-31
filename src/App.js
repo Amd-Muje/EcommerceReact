@@ -42,16 +42,16 @@ function App() {
 
   return (
     <>
-    <header>My Store</header>
+    <header className='p-10 bg-slate-500'>My Store</header>
 
-    <section>
+    <section className='flex'>
       <nav>
       {categories.errorMessage && <div>Error: {categories.errorMessage}</div>}
       {
         categories.data && renderCategories()
       }
       </nav>
-      <article>
+      <article className=''>
       {products.errorMessage && <div>Error: {products.errorMessage}</div>}
           <h1> products </h1>
           {products && renderProducts()}

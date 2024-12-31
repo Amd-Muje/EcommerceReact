@@ -3,7 +3,7 @@ import React from "react";
 const Category_Product = ({title, image, specs, features, price, stock}) => {
     return (
         <article className="flex flex-row mb-4">
-            <div className="bg-cyan-100">
+            <div className="flex-1/4 bg-cyan-100">
                 {title}
             </div>
             <div className="bg-red-300">
