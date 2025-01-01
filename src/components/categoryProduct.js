@@ -1,16 +1,16 @@
 import React from "react";
 
-const Category_Product = ({title, image, specs, features, price, stock}) => {
+const CategoryProduct = ({title, image, specs, features, price, stock}) => {
     return (
-        <article className="flex flex-row mb-4">
-            <div className="flex-1/4 bg-cyan-100">
+        <article className="ml-5 flex flex-row mb-4 w-fit">
+            <div className="w-1/4 bg-cyan-100">
                 {title}
             </div>
-            <div className="bg-red-300">
+            <div className="w-1/4 bg-red-300">
                 <img src={`./assets/${image}`} alt={title}/>
             </div>
             
-            <aside className="bg-red-300">
+            <aside className="w-1/4 bg-red-300">
                 <div>
                     <h3>Dimensions</h3>
                     <label>{specs.dimensions}</label>
@@ -33,7 +33,7 @@ const Category_Product = ({title, image, specs, features, price, stock}) => {
                 </div>
             </aside>
 
-            <aside className="bg-yellow-400">
+            <aside className="w-1/4 bg-yellow-400">
                 <div>
                     &pound;{price}
                 </div>
@@ -41,9 +41,9 @@ const Category_Product = ({title, image, specs, features, price, stock}) => {
                     <label>Stock Level: {stock}</label>
                     <label>Free Delivery</label>
                 </div>
-                <div>
-                    <button>View products</button>
-                    <button>Add to Basket</button>
+                <div className="flex flex-col gap-2">
+                    <button className="border border-black hover:bg-slate-50 p-2 rounded-3xl transition delay-150">View products</button>
+                    <button className="border border-black hover:bg-slate-50 p-2 rounded-3xl transition delay-150">Add to Basket</button>
                 </div>
             </aside>
         </article>
@@ -51,4 +51,4 @@ const Category_Product = ({title, image, specs, features, price, stock}) => {
     
 };
 
-export default Category_Product;
+export default CategoryProduct;
