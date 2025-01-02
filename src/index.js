@@ -5,12 +5,19 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
 
+import ProductDetail from './components/productDetail';
+import Basket from './components/basket';
+import Checkout from './components/checkout';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
+      <Route path="basket" element={<Basket/>}/>
+      <Route path="checkout" element={<Checkout/>}/>
+      <Route path="products/:productId" element={<ProductDetail/>}/>
     </Routes>
     </BrowserRouter>
   </React.StrictMode>

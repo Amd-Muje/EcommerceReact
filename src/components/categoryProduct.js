@@ -1,11 +1,15 @@
 import React from "react";
+import { Link, useNavigate } from "react-router";
 
-const CategoryProduct = ({title, image, specs, features, price, stock}) => {
+const CategoryProduct = ({id, title, image, specs, features, price, stock}) => {
+    const navigate = useNavigate();
+
+
     return (
         <article className="ml-5 flex flex-row mb-4 w-fit">
             <div className="w-1/3">
                 <div className=" bg-cyan-100">
-                    {title}
+                    <Link to={`products/${id}`}>{title}</Link>
                  </div>
                 <div className=" bg-red-300">
                     <img src={`./assets/${image}`} alt={title}/>
@@ -44,7 +48,7 @@ const CategoryProduct = ({title, image, specs, features, price, stock}) => {
                     <label>Free Delivery</label>
                 </div>
                 <div className="flex flex-col gap-2">
-                    <button className="border border-black hover:bg-slate-50 p-2 rounded-3xl transition delay-1">View products</button>
+                    <button onClick={() => navigate(`products/${id}`)} className="border border-black hover:bg-slate-50 p-2 rounded-3xl transition delay-1">View products</button>
                     <button className="border border-black hover:bg-slate-50 p-2 rounded-3xl transition delay-1">Add to Basket</button>
                 </div>
             </aside>
