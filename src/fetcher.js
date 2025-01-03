@@ -29,3 +29,6 @@ export const getProducts = id => {
 
 }
 
+export const getProductById = id => {
+    return fetcher('/products/'+ id);
+}
