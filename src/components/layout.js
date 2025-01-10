@@ -1,24 +1,16 @@
-import React, { useState } from "react";
-import "./App.css";
-import { getCategories } from "./fetcher";
+import React from "react";
+
 import { Link, Outlet } from "react-router";
 
-function App() {
-  React.useEffect(() => {
-    const fetchData = async () => {
-      const responseObject = await getCategories();
-      setCategories(responseObject);
-    };
-    fetchData();
-  }, []);
+
+const layout = ({categories}) => {
 
   const renderCategories = () => {
-    return categories.data.map((c) => (
-      <li key={c.id}>
-        <Link to={`/categories/${c.id}`}>{c.title}</Link>
-      </li>
-    ));
-  };
+      return categories.data.map (c => 
+        <li key={c.id}><Link to={`/categories/${c.id}`}>{c.title}</Link></li>
+      );
+    }
+  
 
   return (
     <>
@@ -38,6 +30,6 @@ function App() {
       <footer></footer>
     </>
   );
-}
+};
 
-export default App;
+export default layout;

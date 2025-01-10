@@ -1,8 +1,32 @@
 import React from "react";
+import { useParams } from "react-router";
+import { getProducts } from "../fetcher";
+import CategoryProduct from "./categoryProduct";
 
 const Category = ({id , title, onCategoryClick}) => {
+const [products, setProducts] = React.useState({errorMessage: '', data: []});
+const {categoryId} = useParams();
+
+React.useEffect(() => {
+  const fetchData = async () => {
+    const responseObject = await getProducts(categoryId);
+    setProducts(responseObject);
+  }
+  fetchData();
+} , [categoryId]);
+
+const renderProducts = () => {
+  return products.data.map (p =>
+    <CategoryProduct key={p.id} {...p}>{p.title}</CategoryProduct>
+  );
+}
+
   return (
-  <div className="border border-black hover:bg-gray-500 gap-2 mb-4 text-center p-5 rounded-2xl transition delay-150" key={id} onClick={() => onCategoryClick(id)}>{title}</div>
+    <div>
+      {products.errorMessage && <div>Error: {products.errorMessage}</div>}
+          <h1 className='font-semibold ml-5 my-10'> products </h1>
+          {products && renderProducts()}
+    </div>
   )
 };
 
