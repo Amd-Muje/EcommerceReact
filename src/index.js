@@ -3,33 +3,14 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  BrowserRouter,
-} from "react-router-dom";
-
-import layout from "./components/layout";
-
-import ProductDetail from "./components/productDetail";
-import Basket from "./components/basket";
-import Checkout from "./components/checkout";
-import Category from "./components/category";
+import CartContextProvider from "./contexts/cartContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="basket" element={<Basket />} />
-          <Route path="checkout" element={<Checkout />} />
-          <Route path="products/:productId" element={<ProductDetail />} />
-          <Route path="categories/:categoryId" element={<Category />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <CartContextProvider>
+    <App />
+    </CartContextProvider>
   </React.StrictMode>
 );
 

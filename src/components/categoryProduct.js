@@ -16,7 +16,7 @@ const CategoryProduct = ({
     <article className="ml-5 flex flex-row mb-4 w-fit">
       <div className="w-1/3">
         <div className=" bg-cyan-100">
-          <Link to={`products/${id}`}>{title}</Link>
+          <Link to={`/products/${id}`}>{title}</Link>
         </div>
         <div className=" bg-red-300">
           <img src={`/assets/${image}`} alt={title} />

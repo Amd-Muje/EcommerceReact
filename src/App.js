@@ -1,9 +1,26 @@
 import React, { useState } from "react";
 import "./App.css";
 import { getCategories } from "./fetcher";
-import { Link, Outlet } from "react-router";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+import Layout from "./components/layout";
+
+import ProductDetail from "./components/productDetail";
+import Basket from "./components/basket";
+import Checkout from "./components/checkout";
+import Category from "./components/category";
+import Home from "./components/home";
+
 
 function App() {
+  const [categories, setCategories] = useState({ errorMessage: "", data: [] });
+  const [products, setProducts] = useState({ errorMessage: "", data: [] });
+
+
   React.useEffect(() => {
     const fetchData = async () => {
       const responseObject = await getCategories();
@@ -12,30 +29,21 @@ function App() {
     fetchData();
   }, []);
 
-  const renderCategories = () => {
-    return categories.data.map((c) => (
-      <li key={c.id}>
-        <Link to={`/categories/${c.id}`}>{c.title}</Link>
-      </li>
-    ));
-  };
+  
 
   return (
     <>
-      <header className="p-10 bg-slate-500">My Store</header>
-
-      <section className="flex">
-        <nav className="bg-cyan-400 p-10 gap-2">
-          {categories.errorMessage && (
-            <div>Error: {categories.errorMessage}</div>
-          )}
-          <ul>{categories.data && renderCategories()}</ul>
-        </nav>
-        <main className="">
-          <Outlet />
-        </main>
-      </section>
-      <footer></footer>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout categories={categories} />}>
+        <Route index element={<Home />} />
+          <Route path="basket" element={<Basket />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="products/:productId" element={<ProductDetail />} />
+          <Route path="categories/:categoryId" element={<Category />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
     </>
   );
 }

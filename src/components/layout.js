@@ -3,7 +3,7 @@ import React from "react";
 import { Link, Outlet } from "react-router";
 
 
-const layout = ({categories}) => {
+const Layout = ({categories}) => {
 
   const renderCategories = () => {
       return categories.data.map (c => 
@@ -27,9 +27,9 @@ const layout = ({categories}) => {
           <Outlet />
         </main>
       </section>
-      <footer></footer>
+      <footer><Link to="/">Home</Link> | <Link to="/basket">Basket</Link></footer>
     </>
   );
 };
 
-export default layout;
+export default Layout;
