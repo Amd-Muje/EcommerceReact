@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router";
+
+import { CartContext } from "../contexts/cartContext";
 
 const CategoryProduct = ({
   id,
@@ -11,6 +13,8 @@ const CategoryProduct = ({
   stock,
 }) => {
   const navigate = useNavigate();
+  const cartContext = useContext(CartContext);
+  const { addProduct } = cartContext;
 
   return (
     <article className="ml-5 flex flex-row mb-4 w-fit">
@@ -54,12 +58,15 @@ const CategoryProduct = ({
         </div>
         <div className="flex flex-col gap-2">
           <button
-            onClick={() => navigate(`products/${id}`)}
+            onClick={() => navigate(`/products/${id}`)}
             className="border border-black hover:bg-slate-50 p-2 rounded-3xl transition delay-1"
           >
             View products
           </button>
-          <button className="border border-black hover:bg-slate-50 p-2 rounded-3xl transition delay-1">
+          <button
+            onClick={() => addProduct({ id, title, price })}
+            className="border border-black hover:bg-slate-50 p-2 rounded-3xl transition delay-1"
+          >
             Add to Basket
           </button>
         </div>
