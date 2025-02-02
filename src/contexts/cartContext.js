@@ -12,8 +12,33 @@ const CartContextProvider = ({children}) => {
 
     }
 
+    const removeProduct = payLoad => {
+      dispatch({type: 'REMOVE', payLoad});
+    }
+
+    const increaseQuantity = payLoad => {
+      dispatch({type: 'INCQTY', payLoad});
+    }
+
+    const decreaseQuantity = payLoad => {
+      dispatch({type: 'DECQTY', payLoad});
+    }
+
+    const clearBasket = () => {
+      dispatch({type: 'CLEAR', payLoad : undefined});
+    }
+
+    const getItem = () => {
+      return state.cartItems;
+    }
+
     const contextValues = {
       addProduct,
+      removeProduct,
+      increaseQuantity,
+      decreaseQuantity,
+      clearBasket,
+      getItem,
       ...state
     }
   return (

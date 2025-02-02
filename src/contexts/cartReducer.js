@@ -1,9 +1,12 @@
 export const CartReducer = (state, action) => { 
   debugger;
 
+  let index = -1;
+  
+  if (action.payLoad)
+  index = state.cartItems.findIndex(x => x.id === action.payload.id);
   switch (action.type) {
     case "ADD":
-    const index = state.cartItems.findIndex(x => x.id === action.payload.id);
 
     if (index === -1) {
       state.cartItems.push({...action.payLoad, quantity: 1 });
@@ -11,13 +14,25 @@ export const CartReducer = (state, action) => {
     else {
       state.cartItems[index].quantity++;
     }
-
-    return state;
+    break;
 
     case "REMOVE":
-      return state;
+      if (index > -1){
+        state.cartItems.splice(index, 1);
+      }
+      break;
 
+    case "DECQTY":
+      if(index > -1){
+        state.cartItems[index].quantity--;
+      }
+      break;
+
+    case "CLEAR":
+      state.cartItems = [];
+      break;
+    
     default:
-      return state;
   }
+  return state
 }
